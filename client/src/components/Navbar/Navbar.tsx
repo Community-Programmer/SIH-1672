@@ -5,8 +5,8 @@ import aadhaar from "../../assets/adhaar.svg";
 const Navbar: React.FC = () => {
   return (
     <>
-      <nav className="bg-white fixed top-0 w-full z-[300]">
-        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md shadow-md">
+      <nav className="bg-white fixed top-0 w-screen z-[300]">
+        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md shadow-md w-screen">
           <h2 className="text-lg font-semibold mb-2">
             Warning: Privacy and Security
           </h2>
@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
           </h1>
           <img className="h-12" src={aadhaar} alt="aadhaar" />
         </div>
-        <div className="bg-gradient-to-r from-[#000046] to-[#1cb5e0] h-[42px] relative w-full">
+        <div className="bg-gradient-to-r from-[#000046] to-[#1cb5e0] p-3 relative w-screen">
           <div className="flex items-center h-full mx-auto max-w-[1170px] px-4">
             <img
               src="https://myaadhaar.uidai.gov.in/static/media/dashboard.21335c2c89af71912adf700d228cbecd.svg"
