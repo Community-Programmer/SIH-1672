@@ -1,0 +1,126 @@
+import React from "react";
+import bg from "../../assets/bg.jpg";
+import { Link } from "react-router-dom";
+import { MdOutlineContactPage, MdOutlineFileCopy, MdOutlinePostAdd } from "react-icons/md";
+
+const Home:React.FC = () => {
+  const styles = {
+    languageOption: {
+      marginLeft: "36px",
+      cursor: "pointer",
+    },
+  };
+
+  const languages = [
+    "English",
+    "हिंदी",
+    "বাংলা",
+    "ಕನ್ನಡ",
+    "ગુજરાતી",
+    "മലയാളം",
+    "मराठी",
+    "ଓଡ଼ିଆ",
+    "ਪੰਜਾਬੀ",
+    "தமிழ்",
+    "తెలుగు",
+    "اردو",
+  ];
+
+  return (
+    <>
+      <section
+        className="h-[500px] bg-cover bg-no-repeat relative w-full mb-[23px] mt-[224px]"
+        style={{ backgroundImage: `url(${bg})`, backgroundPosition: "100%" }}
+      >
+
+        <div className="flex flex-row h-full justify-between items-center mx-auto max-w-[1170px] px-8 w-full">
+          <div className="w-[530px] text-white">
+            <p className="text-[5rem] mb-[28px] p-0 text-left leading-none">
+              Welcome to <span className="font-semibold">myAadhaar</span>
+            </p>
+            <p className="bg-transparent p-0 text-left">
+              {" "}
+              Click on <b className="font-bold">Login </b>button to explore
+              online demographics update service, Aadhaar PVC card ordering
+              &amp; tracking, and more value-added services offered by UIDAI.
+              Your mobile number is required to be registered with the Aadhaar
+              to login.
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-evenly bg-white rounded-[6px] h-[384px]  w-[328px] p-4 z-2 ">
+            <img
+              className="h-[187px] w-[160px]"
+              src="https://myaadhaar.uidai.gov.in/static/media/fingerPrint.54859169124a05ba0132.jpg"
+              alt="biometrics icon"
+            />
+            <div className="font-bold w-full">
+              <Link to='/access/login'>
+              <button
+                type="button"
+                className="bg-gradient-to-r from-[#020d51] to-[#19b0dc] text-white font-bold h-[42px] flex items-center justify-center self-center border-0 rounded transition-all duration-100 cursor-pointer text-base w-full"
+              >
+                Login
+              </button>
+              </Link>
+              <p className="text-[0.7rem] font-normal pt-[3px] text-center">
+                Login with Aadhaar and OTP
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-center text-white font-bold mt-[-49px] relative text-center w-full z-999">
+          {languages.map((language) => (
+            <div key={language} style={styles.languageOption}>
+              {language}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-white shadow-[0_8px_6px_-6px_rgba(50,50,93,0.25)] mb-7 pb-1 pt-0">
+        <div className="flex justify-center items-center text-center text-[1rem] font-bold px-4 pb-4">
+          <span className="flex items-center gap-1 text-[calc(1rem+2px)]">
+            <MdOutlineContactPage size={25} />
+            <Link
+              to="https://uidai.gov.in/images/Aadhaar_Enrolment__and__Update__-__English.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="border-r border-gray-300 ml-1 mr-2 pr-2 align-middle text-inherit cursor-pointer no-underline"
+            >
+              Aadhaar Enrolment &amp; Update Charges
+            </Link>
+          </span>
+          <span className="flex items-center gap-1 text-[calc(1rem+2px)]">
+          <MdOutlinePostAdd size={25}/>
+            <Link
+              to="https://uidai.gov.in/en/my-aadhaar/downloads/enrolment-and-update-forms.html"
+              target="_blank"
+              rel="noreferrer"
+              className="border-r border-gray-300 ml-1 mr-2 pr-2 align-middle text-inherit cursor-pointer no-underline"
+            >
+              Enrolment &amp; Update Forms
+            </Link>
+          </span>
+
+          <span className="flex items-center gap-1 text-[calc(1rem+2px)]">
+          <MdOutlineFileCopy size={25} />
+            <Link
+              to="https://uidai.gov.in/images/commdoc/List_of_Supporting_Document_for_Aadhaar_Enrolment_and_Update.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="border-r border-gray-300 ml-1 mr-2 pr-2 align-middle text-inherit cursor-pointer no-underline"
+            >
+              List of Supporting Documents for Aadhaar Enrolment &amp; Update
+            </Link>
+          </span>
+        </div>
+      </section>
+      <p className="text-center text-base font-bold px-4 pb-4">Services which require mobile number to be registered with Aadhaar</p>
+       <p className="text-center px-4 pb-4">
+        Please Visit Official UIDAI website: <Link className="text-blue-600" to='https://myaadhaar.uidai.gov.in/en_IN'>https://myaadhaar.uidai.gov.in/en_IN</Link>
+       </p>
+    </>
+  );
+};
+
+export default Home;
