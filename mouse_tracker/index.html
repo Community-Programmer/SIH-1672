@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Movement Logger</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Move your mouse around!</h1>
+    <script>
+        var records;
+
+        function flushRecords(recordsBufferSize) {
+            records = {
+                times: Array(recordsBufferSize).fill(0.0),
+                xPositions: Array(recordsBufferSize).fill(0),
+                yPositions: Array(recordsBufferSize).fill(0),
+                counter: 0
+            }
+        }
+
+        function postAndFlushRecords(recordsBufferSize) {
+    const payload = {
+        times: records.times.slice(0, records.counter),
+        xPositions: records.xPositions.slice(0, records.counter),
+        yPositions: records.yPositions.slice(0, records.counter)
+    };
+    
+    fetch('http://127.0.0.1:5000/post-records', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+}
+
+        function log(elapsedTimeInSeconds, x, y, recordsBufferSize) {
+            if (records.counter >= recordsBufferSize)
+                postAndFlushRecords(recordsBufferSize);
+            records.times[records.counter] = elapsedTimeInSeconds;
+            records.xPositions[records.counter] = x;
+            records.yPositions[records.counter] = y;
+            records.counter++;
+        }
+
+        function initBufferTimeout(timeLimitInSeconds, recordsBufferSize) {
+            setTimeout(() => {
+                postAndFlushRecords(recordsBufferSize);
+                initBufferTimeout(timeLimitInSeconds, recordsBufferSize);
+            }, timeLimitInSeconds * 1000);
+        }
+
+        function init() {
+            const startTime = Date.now();
+            const recordsBufferSize = 2500;
+            flushRecords(recordsBufferSize);
+            onmousemove = event => log((Date.now() - startTime) / 1000, event.clientX, event.clientY);
+            initBufferTimeout(10, recordsBufferSize);
+        }
+
+        init();
+    </script>
+</body>
+</html>
