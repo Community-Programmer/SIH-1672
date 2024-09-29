@@ -9,6 +9,14 @@
 <br>
 <hr>
 
+### Mouse Features
+
+![l](https://github.com/user-attachments/assets/7873caef-95b7-4385-aaa3-cb5e6d12e916)
+
+
+<br>
+<hr>
+
 ### Some Data Anayasis Insights (Mouse Dynamics)
 
 - **Human User**
